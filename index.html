@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8"> <!-- Corrected from UTF--8 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>বিন্দুমাত্রা আইটি সলিউশন - Social Links</title>
     
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
-    <!-- Google Fonts Links (Removed as we are using a local font) -->
-
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
@@ -24,11 +22,11 @@
 
         /* --- New Color Palette & General Styles --- */
         :root {
-            --bg-color: #121212; /* Deep dark background */
-            --card-bg: rgba(30, 30, 30, 0.7); /* Darker, glassy card */
+            --bg-color: #121212;
+            --card-bg: rgba(30, 30, 30, 0.7);
             --primary-text: #e0e0e0;
             --secondary-text: #a0a0a0;
-            --accent-color: #9b59b6; /* Vibrant purple accent */
+            --accent-color: #9b59b6;
             --hover-color: rgba(155, 89, 182, 0.2);
             --border-color: rgba(255, 255, 255, 0.15);
         }
@@ -45,14 +43,13 @@
         }
 
         body {
-            /* Changed font-family to use the local Kalpurush font */
             font-family: 'Kalpurush', sans-serif; 
             background: linear-gradient(135deg, #232526, #414345);
             color: var(--primary-text);
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px 15px;
             font-size: 16px;
         }
 
@@ -67,24 +64,25 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .profile-header, .about-section, .services-section, .links-section, .footer {
+        .profile-header, .shortcut-buttons, .about-section, .services-section, .links-section, .footer {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
         }
-        .about-section { animation-delay: 0.2s; }
-        .services-section { animation-delay: 0.4s; }
-        .links-section { animation-delay: 0.6s; }
-        .footer { animation-delay: 0.8s; }
+        .shortcut-buttons { animation-delay: 0.2s; }
+        .about-section { animation-delay: 0.4s; }
+        .services-section { animation-delay: 0.6s; }
+        .links-section { animation-delay: 0.8s; }
+        .footer { animation-delay: 1s; }
 
-        /* --- Profile Header --- */
+        /* --- Profile Header (Updated for new banner) --- */
         .profile-header {
             position: relative;
             margin-bottom: 80px;
         }
         .cover-photo {
-            width: 100%;
-            height: 250px;
-            background-image: url('images/imagecover.jpg');
+            width: 110%;
+            height: 150px; /* Adjust height as needed for the banner */
+            background-image: url('images/banner.jpg'); /* New banner image */
             background-size: cover;
             background-position: center;
             border-radius: 15px;
@@ -94,11 +92,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -60px;
+            margin-top: -50px; /* Adjusted for new logo size */
         }
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 100px;  /* Logo size reduced */
+            height: 100px; /* Logo size reduced */
             border-radius: 50%;
             border: 4px solid var(--accent-color);
             background-color: var(--bg-color);
@@ -138,6 +136,28 @@
             transform: translateY(-3px);
         }
 
+        /* --- Shortcut Buttons --- */
+        .shortcut-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .shortcut-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-text);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .shortcut-btn:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-3px);
+        }
+
         /* --- Shared Section Styles --- */
         .section-card {
             background: var(--card-bg);
@@ -161,17 +181,18 @@
         /* --- Services Section --- */
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
+            grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
         }
         .service-card {
             background: rgba(0,0,0,0.2);
             padding: 1rem;
             border-radius: 10px;
             display: flex;
+            flex-direction: column; /* Icon and text vertically */
             align-items: center;
-            gap: 1rem;
-            text-align: left;
+            text-align: center;
+            gap: 0.75rem;
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .service-card:hover {
@@ -181,10 +202,9 @@
         .service-card i {
             font-size: 1.5rem;
             color: var(--accent-color);
-            width: 30px;
         }
         .service-card span {
-            font-size: 1rem;
+            font-size: 0.9rem; /* Slightly smaller font for mobile grid */
         }
 
         /* --- Links Section --- */
@@ -203,7 +223,7 @@
             border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Changed for phone box alignment */
+            justify-content: space-between;
             font-size: 1.1rem;
             font-weight: 500;
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -217,7 +237,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            /* Center content in the remaining space */
             flex-grow: 1;
             justify-content: center;
         }
@@ -227,7 +246,6 @@
         .link-box.single-link {
             justify-content: center;
         }
-        /* Specific Link Colors */
         .facebook .fa-facebook { color: #1877F2; }
         .whatsapp .fa-whatsapp { color: #25D366; }
         .instagram .fa-instagram { color: #E4405F; }
@@ -296,10 +314,20 @@
         }
         .footer p { color: var(--secondary-text); font-size: 0.9rem; }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 480px) {
-            .profile-text h1 { font-size: 1.8rem; }
-            .service-grid { grid-template-columns: 1fr; }
+        /* --- Responsive Design for Larger Screens --- */
+        @media (min-width: 600px) {
+            .service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .service-card {
+                flex-direction: row; /* Icon and text side-by-side */
+                text-align: left;
+                gap: 1rem;
+            }
+             .service-card span {
+                font-size: 1rem;
+            }
+            .profile-text h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -323,6 +351,12 @@
             </div>
         </header>
 
+        <!-- Shortcut Buttons -->
+        <section class="shortcut-buttons">
+            <a href="#services" class="shortcut-btn"><i class="fas fa-cogs"></i> আমাদের সেবাসমূহ</a>
+            <a href="#contact" class="shortcut-btn"><i class="fas fa-link"></i> যোগাযোগ করুন</a>
+        </section>
+
         <!-- About Section -->
         <section class="about-section section-card">
             <h2>আমাদের সম্পর্কে</h2>
@@ -332,24 +366,24 @@
         </section>
 
         <!-- Services Section -->
-        <section class="services-section section-card">
+        <section id="services" class="services-section section-card">
             <h2>আমাদের সেবাসমূহ</h2>
             <div class="service-grid">
-                <div class="service-card"><i class="fas fa-code"></i><span>কাস্টম সফটওয়্যার ডেভেলপমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-laptop-code"></i><span>ফুল-স্ট্যাক ওয়েব ডেভেলপমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-mobile-alt"></i><span>মোবাইল অ্যাপ ডেভেলপমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-shopping-cart"></i><span>ই-কমার্স সাইট ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-code"></i><span>কাস্টম সফটওয়্যার</span></div>
+                <div class="service-card"><i class="fas fa-laptop-code"></i><span>ওয়েব ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-mobile-alt"></i><span>অ্যাপ ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-shopping-cart"></i><span>ই-কমার্স সাইট</span></div>
                 <div class="service-card"><i class="fas fa-id-card"></i><span>পোর্টফোলিও ওয়েবসাইট</span></div>
                 <div class="service-card"><i class="fas fa-database"></i><span>ডাটাবেস ইঞ্জিনিয়ারিং</span></div>
                 <div class="service-card"><i class="fas fa-server"></i><span>ব্যাকএন্ড আর্কিটেকচার</span></div>
-                <div class="service-card"><i class="fas fa-paint-brush"></i><span>প্রফেশনাল গ্রাফিক্স ডিজাইন</span></div>
-                <div class="service-card"><i class="fas fa-tasks"></i><span>পেজ ও সাইট ম্যানেজমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-shield-alt"></i><span>সাইট মেইনটেন্যান্স ও সিকিউরিটি</span></div>
+                <div class="service-card"><i class="fas fa-paint-brush"></i><span>গ্রাফিক্স ডিজাইন</span></div>
+                <div class="service-card"><i class="fas fa-tasks"></i><span>সাইট ম্যানেজমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-shield-alt"></i><span>সাইট সিকিউরিটি</span></div>
             </div>
         </section>
 
         <!-- Links Section -->
-        <section class="links-section">
+        <section id="contact" class="links-section">
             <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">যোগাযোগ করুন</h2>
             
             <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" class="link-box facebook single-link">
@@ -370,11 +404,11 @@
             </div>
             <div class="phone-numbers-container" id="phone-numbers">
                 <div class="phone-number-item">
-                    <a href="tel:+8801779-973619">+8801779-973619 (Most Responsive)</a>
+                    <a href="tel:+8801745938158">+8801745-938158</a>
                     <i class="far fa-copy copy-icon" data-clipboard-text="+8801745938158" title="কপি করুন"></i>
                 </div>
                 <div class="phone-number-item">
-                    <a href="tel:+8801745938158">+8801745938158</a>
+                    <a href="tel:+8801779973619">+8801779-973619</a>
                     <i class="far fa-copy copy-icon" data-clipboard-text="+8801779973619" title="কপি করুন"></i>
                 </div>
                 <div class="phone-number-item">
