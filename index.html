@@ -1,18 +1,307 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!-- Corrected from UTF--8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>বিন্দুমাত্রা আইটি সলিউশন - Social Links</title>
     
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    
+    <!-- Google Fonts Links (Removed as we are using a local font) -->
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* --- Define Local Font --- */
+        @font-face {
+            font-family: 'Kalpurush';
+            src: url('fonts/kalpurush.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- New Color Palette & General Styles --- */
+        :root {
+            --bg-color: #121212; /* Deep dark background */
+            --card-bg: rgba(30, 30, 30, 0.7); /* Darker, glassy card */
+            --primary-text: #e0e0e0;
+            --secondary-text: #a0a0a0;
+            --accent-color: #9b59b6; /* Vibrant purple accent */
+            --hover-color: rgba(155, 89, 182, 0.2);
+            --border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- Base Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Changed font-family to use the local Kalpurush font */
+            font-family: 'Kalpurush', sans-serif; 
+            background: linear-gradient(135deg, #232526, #414345);
+            color: var(--primary-text);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-size: 16px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 680px;
+            text-align: center;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .profile-header, .about-section, .services-section, .links-section, .footer {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .about-section { animation-delay: 0.2s; }
+        .services-section { animation-delay: 0.4s; }
+        .links-section { animation-delay: 0.6s; }
+        .footer { animation-delay: 0.8s; }
+
+        /* --- Profile Header --- */
+        .profile-header {
+            position: relative;
+            margin-bottom: 80px;
+        }
+        .cover-photo {
+            width: 100%;
+            height: 250px;
+            background-image: url('images/imagecover.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -60px;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+        .profile-text {
+            margin-top: 1rem;
+        }
+        .profile-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .profile-text p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+        }
+        .profile-text p i {
+            margin-right: 8px;
+        }
+        .header-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .header-socials a {
+            color: var(--secondary-text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .header-socials a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Shared Section Styles --- */
+        .section-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        .section-card h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- About Section --- */
+        .about-section p {
+            line-height: 1.8;
+            color: var(--secondary-text);
+        }
+
+        /* --- Services Section --- */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .service-card {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: left;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--hover-color);
+        }
+        .service-card i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            width: 30px;
+        }
+        .service-card span {
+            font-size: 1rem;
+        }
+
+        /* --- Links Section --- */
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .link-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-text);
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Changed for phone box alignment */
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+        .link-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            background-color: var(--hover-color);
+        }
+        .link-box .link-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* Center content in the remaining space */
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .link-box .link-content i {
+            font-size: 1.5rem;
+        }
+        .link-box.single-link {
+            justify-content: center;
+        }
+        /* Specific Link Colors */
+        .facebook .fa-facebook { color: #1877F2; }
+        .whatsapp .fa-whatsapp { color: #25D366; }
+        .instagram .fa-instagram { color: #E4405F; }
+        .gmail .fa-envelope { color: #EA4335; }
+        .phone .fa-phone-alt { color: #FFA500; }
+        .website .fa-globe { color: #4a90e2; }
+
+        /* --- Phone Numbers Interactive Box --- */
+        .phone { cursor: pointer; }
+        .phone .arrow-icon { transition: transform 0.3s ease; }
+        .phone.open .arrow-icon { transform: rotate(180deg); }
+        .phone-numbers-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            margin-top: -10px;
+            padding: 0 20px;
+        }
+        .phone-numbers-container.show {
+            max-height: 300px;
+            padding: 15px 20px;
+        }
+        .phone-number-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .phone-number-item:last-child { border-bottom: none; }
+        .phone-number-item a { color: var(--primary-text); text-decoration: none; font-size: 1.1rem; }
+        .copy-icon { color: var(--secondary-text); cursor: pointer; font-size: 1rem; transition: color 0.2s; position: relative; }
+        .copy-icon:hover { color: var(--accent-color); }
+        .copy-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%; left: 50%; transform: translateX(-50%);
+            background-color: #333; color: #fff; padding: 5px 10px;
+            border-radius: 5px; font-size: 0.8rem; white-space: nowrap;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s;
+        }
+        .copy-icon.copied::after { opacity: 1; visibility: visible; }
+        
+        /* --- Footer --- */
+        .footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .footer-social-links a {
+            color: var(--secondary-text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer-social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        .footer p { color: var(--secondary-text); font-size: 0.9rem; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 480px) {
+            .profile-text h1 { font-size: 1.8rem; }
+            .service-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
@@ -24,53 +313,122 @@
                 <img src="images/logo.png" alt="Company Logo" class="logo">
                 <div class="profile-text">
                     <h1>বিন্দুমাত্রা আইটি সলিউশন</h1>
-                    <p><i class="fas fa-map-marker-alt"></i> পিটিআই মোড়, বগুড়া</p>
+                    <p><i class="fas fa-map-marker-alt"></i> পিটিআই মোড়, বগুড়া-৫৮০০</p>
+                    <div class="header-socials">
+                        <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/8801969763454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:bindumatrait@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
         </header>
 
         <!-- About Section -->
-        <section class="about-section">
+        <section class="about-section section-card">
             <h2>আমাদের সম্পর্কে</h2>
             <p>
-                বিন্দুমাত্রা আইটি সলিউশন একটি আধুনিক প্রযুক্তি-ভিত্তিক প্রতিষ্ঠান। আমরা ওয়েব ডিজাইন, অ্যাপ ডেভেলপমেন্ট, এবং কাস্টম সফটওয়্যার তৈরিতে বিশেষ পারদর্শী। আমাদের লক্ষ্য হলো ব্যবসার প্রসারে ডিজিটাল সমাধান প্রদান করা। আমরা গুণগত মান এবং গ্রাহক সন্তুষ্টিতে বিশ্বাসী। আপনার স্বপ্নকে বাস্তবে রূপ দিতে আমরা সর্বদা প্রস্তুত।
+                বিন্দুমাত্রা আইটি সলিউশন একটি আধুনিক প্রযুক্তি-ভিত্তিক প্রতিষ্ঠান, যা আপনার ব্যবসাকে ডিজিটাল জগতে পরিচিত করতে অঙ্গীকারবদ্ধ। আমাদের মূল লক্ষ্য হলো, **সুলভ মূল্যে সেরা মানের সেবা** নিশ্চিত করা। আমরা শুধু প্রজেক্ট ডেলিভারি করি না, বরং ক্লায়েন্টদের সাথে দীর্ঘস্থায়ী সম্পর্ক তৈরিতে বিশ্বাসী। অত্যাধুনিক প্রযুক্তি ব্যবহার করে আমরা আপনার ব্যবসাকে প্রতিযোগিতায় এগিয়ে রাখি।
             </p>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section section-card">
+            <h2>আমাদের সেবাসমূহ</h2>
+            <div class="service-grid">
+                <div class="service-card"><i class="fas fa-code"></i><span>কাস্টম সফটওয়্যার ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-laptop-code"></i><span>ফুল-স্ট্যাক ওয়েব ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-mobile-alt"></i><span>মোবাইল অ্যাপ ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-shopping-cart"></i><span>ই-কমার্স সাইট ডেভেলপমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-id-card"></i><span>পোর্টফোলিও ওয়েবসাইট</span></div>
+                <div class="service-card"><i class="fas fa-database"></i><span>ডাটাবেস ইঞ্জিনিয়ারিং</span></div>
+                <div class="service-card"><i class="fas fa-server"></i><span>ব্যাকএন্ড আর্কিটেকচার</span></div>
+                <div class="service-card"><i class="fas fa-paint-brush"></i><span>প্রফেশনাল গ্রাফিক্স ডিজাইন</span></div>
+                <div class="service-card"><i class="fas fa-tasks"></i><span>পেজ ও সাইট ম্যানেজমেন্ট</span></div>
+                <div class="service-card"><i class="fas fa-shield-alt"></i><span>সাইট মেইনটেন্যান্স ও সিকিউরিটি</span></div>
+            </div>
         </section>
 
         <!-- Links Section -->
         <section class="links-section">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" class="link-box facebook">
-                <i class="fab fa-facebook"></i>
-                <span>ফেসবুক পেজ</span>
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">যোগাযোগ করুন</h2>
+            
+            <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" class="link-box facebook single-link">
+                <div class="link-content"><i class="fab fa-facebook"></i><span>ফেসবুক পেজ</span></div>
             </a>
             
-            <!-- WhatsApp -->
-            <a href="https://wa.me/8801745938158" target="_blank" class="link-box whatsapp">
-                <i class="fab fa-whatsapp"></i>
-                <span>হোয়াটসঅ্যাপে চ্যাট করুন</span>
+            <a href="https://wa.me/8801969763454" target="_blank" class="link-box whatsapp single-link">
+                <div class="link-content"><i class="fab fa-whatsapp"></i><span>হোয়াটসঅ্যাপে চ্যাট করুন</span></div>
             </a>
             
-            <!-- Phone -->
-            <div class="link-box phone">
-                <i class="fas fa-phone-alt"></i>
-                <div class="phone-numbers">
-                    <span>ফোন/যোগাযোগ</span>
-                    <div class="numbers">
-                        <a href="tel:+8801745938158">+8801745-938158</a>
-                        <a href="tel:+8801779973619">+8801779-973619</a>
-                        <a href="tel:+8801966032460">+8801966-032460</a>
-                    </div>
+            <a href="mailto:bindumatrait@gmail.com" class="link-box gmail single-link">
+                <div class="link-content"><i class="fas fa-envelope"></i><span>আমাদের ইমেইল করুন</span></div>
+            </a>
+            
+            <div class="link-box phone" id="phone-box">
+                <div class="link-content"><i class="fas fa-phone-alt"></i><span>ফোন নাম্বার সমূহ</span></div>
+                <i class="fas fa-chevron-down arrow-icon"></i>
+            </div>
+            <div class="phone-numbers-container" id="phone-numbers">
+                <div class="phone-number-item">
+                    <a href="tel:+8801779-973619">+8801779-973619 (Most Responsive)</a>
+                    <i class="far fa-copy copy-icon" data-clipboard-text="+8801745938158" title="কপি করুন"></i>
+                </div>
+                <div class="phone-number-item">
+                    <a href="tel:+8801745938158">+8801745938158</a>
+                    <i class="far fa-copy copy-icon" data-clipboard-text="+8801779973619" title="কপি করুন"></i>
+                </div>
+                <div class="phone-number-item">
+                    <a href="tel:+8801966032460">+8801966-032460</a>
+                    <i class="far fa-copy copy-icon" data-clipboard-text="+8801966032460" title="কপি করুন"></i>
                 </div>
             </div>
 
-            <!-- Website -->
-            <a href="https://bindumatra.it.solutions.netlify.app" target="_blank" class="link-box website">
-                <i class="fas fa-globe"></i>
-                <span>ওয়েবসাইট</span>
+            <a href="https://www.instagram.com/abdullah_al.rafi" target="_blank" class="link-box instagram single-link">
+                <div class="link-content"><i class="fab fa-instagram"></i><span>এক্সিকিউটিভ ডিরেক্টর</span></div>
+            </a>
+
+            <a href="https://bindumatra.it.solutions.netlify.app" target="_blank" class="link-box website single-link">
+                <div class="link-content"><i class="fas fa-globe"></i><span>আমাদের ওয়েবসাইট</span></div>
             </a>
         </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-social-links">
+                <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/8801969763454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:bindumatrait@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; All rights reserved by Bindumatra IT solutions 2025</p>
+        </footer>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneBox = document.getElementById('phone-box');
+            const phoneNumbersContainer = document.getElementById('phone-numbers');
+            phoneBox.addEventListener('click', () => {
+                phoneNumbersContainer.classList.toggle('show');
+                phoneBox.classList.toggle('open');
+            });
+
+            const copyIcons = document.querySelectorAll('.copy-icon');
+            copyIcons.forEach(icon => {
+                icon.setAttribute('data-tooltip', icon.getAttribute('title'));
+                icon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const textToCopy = icon.getAttribute('data-clipboard-text');
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        icon.setAttribute('data-tooltip', 'কপি হয়েছে!');
+                        icon.classList.add('copied');
+                        setTimeout(() => {
+                            icon.setAttribute('data-tooltip', icon.getAttribute('title'));
+                            icon.classList.remove('copied');
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
