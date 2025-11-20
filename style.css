@@ -1,0 +1,1205 @@
+/* --- লোকাল ফন্ট সংজ্ঞায়িত করুন --- */
+@font-face {
+    font-family: 'Kalpurush';
+    src: url('fonts/kalpurush.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- নতুন কালার প্যালেট ও সাধারণ স্টাইল --- */
+:root {
+    --bg-color: #1a1a1a; /* একটু হালকা গাঢ় ব্যাকগ্রাউন্ড */
+    --card-bg: transparent; /* কার্ডের ব্যাকগ্রাউন্ড স্বচ্ছ */
+    --primary-text: #e0e0e0;
+    --secondary-text: #a0a0a0;
+    --accent-color: #ff8c00; /* atmotechisf.com থেকে কমলা অ্যাকসেন্ট */
+    --hover-color: rgba(255, 140, 0, 0.2);
+    --border-color: rgba(255, 255, 255, 0.15);
+    --header-bg: #22252a; /* হেডারের জন্য গাঢ় নীল-ধূসর */
+}
+
+/* --- বেসিক সেটআপ --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kalpurush', sans-serif;
+    background-color: var(--bg-color); /* Fallback and base color */
+    color: var(--primary-text);
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden; /* অনুভূমিক স্ক্রল প্রতিরোধ করুন */
+    position: relative; /* pseudo-element এর জন্য আবশ্যক */
+    isolation: isolate; /* নতুন stacking context তৈরি করে */
+}
+
+/* --- গ্লোবাল ব্যাকগ্রাউন্ড ইমেজ --- */
+body::before {
+    content: "";
+    position: absolute; /* body-র সাথে সম্পর্কিত */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* স্ক্রল করার সময় ব্যাকগ্রাউন্ড স্থির থাকবে */
+    opacity: 0.1; /* প্রয়োজন অনুযায়ী স্বচ্ছতা পরিবর্তন করুন (যেমন 0.1 = 10%) */
+    z-index: -1; /* কন্টেন্টের পেছনে কিন্তু body-র background-color এর উপরে থাকবে */
+}
+
+
+.main-container {
+    width: 100%;
+    max-width: 1200px; /* ডেস্কটপ দেখার সুবিধার জন্য সর্বোচ্চ প্রস্থ বাড়ানো হয়েছে */
+    margin: 0 auto;
+    padding: 0 15px; /* সামঞ্জস্যপূর্ণ প্যাডিং */
+}
+
+/* --- অ্যানিমেশন --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animated-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animated-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* সকল সেকশনের জন্য অ্যানিমেশন */
+.section-hero, .about-section, .services-section, .links-section, .projects-section, .services-full-section, .team-section, .auth-container, .appointment-form, .footer {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section-hero.is-visible, .about-section.is-visible, .services-section.is-visible, .links-section.is-visible, .projects-section.is-visible, .services-full-section.is-visible, .team-section.is-visible, .auth-container.is-visible, .appointment-form.is-visible, .footer.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- হেডার (atmotechisf.com-এর উপর ভিত্তি করে নতুন কাঠামো) --- */
+.header-top {
+    background-color: var(--header-bg);
+    color: var(--secondary-text);
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.header-top-left, .header-top-right {
+    display: flex;
+    gap: 20px;
+}
+.header-top-left a, .header-top-right a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.header-top-left a:hover, .header-top-right a:hover {
+    color: var(--accent-color);
+}
+.header-top-left i, .header-top-right i {
+    margin-right: 5px;
+}
+
+/* New styles for header-top layout */
+.header-top-primary, .header-top-secondary {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.header-top-secondary {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 5px;
+    margin-top: 5px;
+}
+.header-top-secondary .location-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.view-on-maps-btn {
+    background-color: var(--accent-color);
+    color: #333333; /* Changed to white as requested */
+    padding: 5px 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600; /* Bolder text */
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+.view-on-maps-btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+}
+
+
+.navbar {
+    background-color: var(--header-bg);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* আন্ডারলাইন সরানোর জন্য */
+}
+
+.navbar .logo-container img {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.navbar .logo-container .company-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-text);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: var(--primary-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    display: block;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-links a.highlight-team-link {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.nav-links a.highlight-team-link:hover {
+    color: #e67e22;
+}
+
+.nav-links .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--card-bg);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 10px;
+    left: 0;
+}
+
+.nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-links .dropdown-menu a {
+    color: var(--primary-text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links .dropdown-menu a:hover {
+    background-color: var(--hover-color);
+    color: var(--accent-color);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-buttons .schedule-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-buttons .schedule-btn:hover {
+    background-color: #e67e22; /* গাঢ় কমলা */
+    transform: translateY(-2px);
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--primary-text);
+    cursor: pointer;
+}
+
+/* --- হিরো সেকশন (index.html এর জন্য) --- */
+.section-hero {
+    background-image: url('images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 30vh; /* ডেস্কটপের জন্য উচ্চতা */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    border-radius: 15px;
+    margin: 20px 0;
+    overflow: hidden; /* নিশ্চিত করুন যে বিষয়বস্তু গোলাকার কোণার ভিতরে থাকে */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* টেক্সট পঠনযোগ্যতার জন্য গাঢ় ওভারলে */
+    border-radius: 15px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-btn.watch-video {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-btn.watch-video:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.hero-btn.schedule-meeting {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.hero-btn.schedule-meeting:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+}
+
+/* --- সেকশন কার্ড (সাধারণ স্টাইলিং) --- */
+.section-card {
+    background: var(--card-bg);
+    backdrop-filter: none;
+    padding: 2.5rem 0; /* প্যাডিং সামঞ্জস্য করা হয়েছে */
+    border-radius: 0;
+    margin-bottom: 2rem;
+    border: none;
+    box-shadow: none;
+}
+.section-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem; /* বড় হেডিং */
+    color: var(--accent-color); /* হেডিং হাইলাইট করুন */
+    text-align: center;
+}
+
+/* --- আমাদের সম্পর্কে সেকশন (index.html এর জন্য) --- */
+.about-section .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+}
+.about-section p {
+    line-height: 1.8;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+.about-mission-vision {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.about-item {
+    flex: 1 1 45%; /* বড় স্ক্রিনে দুটি কলাম */
+    background: transparent;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color); /* গঠন ঠিক রাখতে বর্ডার যুক্ত করা হয়েছে */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.about-item i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+.about-item h3 {
+    font-size: 1.3rem;
+    color: var(--primary-text);
+}
+.about-item p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin-bottom: 0;
+}
+
+/* --- সেবাসমূহ সেকশন (index.html এবং services.html এর জন্য) --- */
+.service-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.service-card {
+    background: transparent;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid var(--border-color); /* গঠন ঠিক রাখতে বর্ডার যুক্ত করা হয়েছে */
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--hover-color);
+}
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+.service-card h3 {
+    font-size: 1.2rem;
+    color: var(--primary-text);
+}
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+.service-card .learn-more-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.service-card .learn-more-btn:hover {
+    background-color: #e67e22;
+}
+/* সেবাসমূহ পেজের জন্য ছবির স্টাইল */
+.services-full-section .service-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+/* --- প্রজেক্টস সেকশন (projects.html এর জন্য) --- */
+.project-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* ছোট স্ক্রিনের জন্য সামঞ্জস্য */
+}
+.project-card {
+    background: transparent;
+    border: 1px solid var(--border-color); /* গঠন ঠিক রাখতে বর্ডার যুক্ত করা হয়েছে */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.project-card img {
+    width: 100%;
+    height: 180px; /* প্রজেক্ট ছবির উচ্চতা সামঞ্জস্য */
+    object-fit: contain; /* ছবি পুরোটা দেখানোর জন্য */
+    background-color: #fff; /* লোগোর জন্য সাদা ব্যাকগ্রাউন্ড */
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px; /* লোগোর চারপাশে প্যাডিং */
+}
+.project-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.project-card h3 {
+    font-size: 1.4rem;
+    color: var(--primary-text);
+    margin-bottom: 0.8rem;
+}
+.project-card p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+.project-card .learn-more-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+.project-card .learn-more-btn:hover {
+    background-color: #e67e22;
+}
+
+/* --- টিম সেকশন (team.html এর জন্য) --- */
+.team-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    text-align: center;
+}
+.team-member-card {
+    background: transparent;
+    border: 1px solid var(--border-color); /* গঠন ঠিক রাখতে বর্ডার যুক্ত করা হয়েছে */
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.team-member-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    margin-bottom: 1rem;
+}
+.team-member-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+.team-member-card p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+.team-social-links a {
+    color: var(--secondary-text);
+    font-size: 1.2rem;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+}
+.team-social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- যোগাযোগ লিঙ্ক সেকশন (মূল index.html থেকে, সব পেজের জন্য) --- */
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.links-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-text);
+    text-align: center;
+}
+.link-box {
+    background: rgba(30, 30, 30, 0.5); /* লিঙ্ক বক্সগুলোর জন্য হালকা ব্যাকগ্রাউন্ড রাখা হয়েছে */
+    border: 1px solid var(--border-color);
+    color: var(--primary-text);
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+.link-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    background-color: var(--hover-color);
+}
+.link-box .link-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+    justify-content: center;
+}
+.link-box .link-content i {
+    font-size: 1.5rem;
+}
+.link-box.single-link {
+    justify-content: center;
+}
+.facebook .fa-facebook { color: #1877F2; }
+.whatsapp .fa-whatsapp { color: #25D366; }
+.instagram .fa-instagram { color: #E4405F; }
+.gmail .fa-envelope { color: #EA4335; }
+.phone .fa-phone-alt { color: #FFA500; }
+.app-store .fa-store { color: #00D27A; } /* অ্যাপ স্টোরের জন্য নতুন রঙ */
+
+/* --- ফোন নম্বর ইন্টারঅ্যাক্টিভ বক্স --- */
+.phone { cursor: pointer; }
+.phone .arrow-icon { transition: transform 0.3s ease; }
+.phone.open .arrow-icon { transform: rotate(180deg); }
+.phone-numbers-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    margin-top: -10px;
+    padding: 0 20px;
+}
+.phone-numbers-container.show {
+    max-height: 300px;
+    padding: 15px 20px;
+}
+.phone-number-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.phone-number-item:last-child { border-bottom: none; }
+.phone-number-item a { color: var(--primary-text); text-decoration: none; font-size: 1.1rem; }
+.copy-icon { color: var(--secondary-text); cursor: pointer; font-size: 1rem; transition: color 0.2s; position: relative; }
+.copy-icon:hover { color: var(--accent-color); }
+.copy-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%; left: 50%; transform: translateX(-50%);
+    background-color: #333; color: #fff; padding: 5px 10px;
+    border-radius: 5px; font-size: 0.8rem; white-space: nowrap;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s;
+}
+.copy-icon.copied::after { opacity: 1; visibility: visible; }
+
+/* --- ফুটার (সব পেজের জন্য) --- */
+.footer {
+    background-color: var(--header-bg);
+    color: var(--secondary-text);
+    padding: 2.5rem 1.5rem; /* বর্ধিত প্যাডিং */
+    border-top: 1px solid var(--border-color);
+    margin-top: 3rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.footer-col {
+    flex: 1 1 280px; /* তিন কলামে প্রদর্শনের জন্য */
+    text-align: left;
+}
+.footer-col h3 {
+    color: var(--primary-text);
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col ul li {
+    margin-bottom: 0.8rem;
+}
+.footer-col ul li a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+    color: var(--accent-color);
+}
+.footer-info p {
+    margin-bottom: 0.5rem;
+}
+.footer-social-links {
+    display: flex;
+    justify-content: flex-start; /* ফুটারে বামদিকে সারিবদ্ধ */
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+.footer-social-links a {
+    color: var(--secondary-text);
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-social-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+.footer-bottom {
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    text-align: center;
+}
+
+/* --- অ্যাপয়েন্টমেন্ট ফর্ম ও লগইন ফর্মের জন্য আলাদা ব্যাকগ্রাউন্ড --- */
+.appointment-form, .auth-form {
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.appointment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 15px;
+}
+.appointment-form {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+.appointment-form h2 {
+    width: 100%;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+}
+.appointment-details, .appointment-calendar {
+    flex: 1 1 45%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.appointment-details p {
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+.appointment-details input[type="text"],
+.appointment-details input[type="email"],
+.appointment-details input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.3);
+    color: var(--primary-text);
+    font-family: 'Kalpurush', sans-serif;
+    font-size: 1rem;
+}
+.appointment-details input::placeholder {
+    color: var(--secondary-text);
+}
+/* WhatsApp contact box specific styling */
+.whatsapp-contact-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+}
+.whatsapp-contact-box:hover {
+    background-color: #1DA851; /* Darker green on hover */
+    transform: translateY(-3px);
+}
+.whatsapp-contact-box i {
+    font-size: 2.5rem; /* Large icon */
+    color: white;
+}
+.whatsapp-contact-box span {
+    font-size: 1.1rem;
+}
+
+
+.appointment-calendar .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary-text);
+    font-size: 1.2rem;
+}
+.appointment-calendar .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+.calendar-day-name {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+.calendar-day {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+    color: var(--primary-text);
+    transition: background-color 0.2s ease;
+}
+.calendar-day:hover:not(.empty-day):not(.selected-day):not(.past-day) {
+    background-color: var(--hover-color);
+}
+.calendar-day.empty-day, .calendar-day.past-day {
+    color: var(--secondary-text);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.calendar-day.selected-day {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 600;
+}
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+.time-slot-btn {
+    padding: 10px 15px;
+    border-radius: 50px;
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid var(--border-color);
+    color: var(--primary-text);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.time-slot-btn:hover:not(.selected-slot) {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+.time-slot-btn.selected-slot {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 600;
+}
+.submit-meeting-btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+.submit-meeting-btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+}
+
+/* --- লগইন/রেজিস্টার ফর্ম (login.html, register.html এর জন্য) --- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* হেডার ও ফুটারে জায়গা রেখে */
+    padding: 40px 15px;
+}
+.auth-form {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+.auth-form h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+}
+.auth-form .input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-text);
+    font-weight: 500;
+}
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.3);
+    color: var(--primary-text);
+    font-family: 'Kalpurush', sans-serif;
+    font-size: 1rem;
+}
+.auth-form input::placeholder {
+    color: var(--secondary-text);
+}
+.auth-form .submit-btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+.auth-form .submit-btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+}
+.auth-form .toggle-link {
+    display: block;
+    margin-top: 1.5rem;
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.auth-form .toggle-link:hover {
+    color: var(--accent-color);
+}
+
+
+/* --- রেসপনসিভ ডিজাইন --- */
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 15px;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    .footer-col {
+        flex: 1 1 45%; /* মাঝারি স্ক্রিনে দুটি কলাম */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header Top for Mobile - 2 Layers */
+    .header-top {
+        flex-direction: column;
+        gap: 0; /* No gap between rows */
+        padding: 5px 15px; /* Reduced padding */
+        align-items: flex-start; /* Align left */
+    }
+    .header-top-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .header-top-left a, .header-top-right a {
+        font-size: 0.8rem;
+    }
+    .view-on-maps-btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+    .header-top-row:first-child { /* Top row (phone, email) */
+        margin-bottom: 3px; /* Reduced gap between rows */
+        padding-bottom: 3px; /* For separator */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .header-top-left, .header-top-right {
+        width: auto; /* Allow content to dictate width */
+        justify-content: flex-start; /* Align left */
+        gap: 10px; /* Adjusted gap */
+        flex-wrap: wrap;
+    }
+    .header-top-right {
+        justify-content: flex-end; /* Align right for register/login */
+    }
+    .header-top-left .location-info { /* Hide location text, only show map button on mobile */
+        display: none;
+    }
+    .header-top-secondary { /* This row handles location and map button */
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* Space out location and button */
+        align-items: center;
+        gap: 10px;
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+    .header-top-secondary .location-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-top-secondary .location-link span {
+        font-size: 0.85rem; /* Make text readable */
+        white-space: nowrap;
+    }
+
+    .navbar {
+        padding: 10px 15px; /* Adjusted padding for navbar */
+    }
+
+    .nav-links {
+        display: none; /* মোবাইল স্ক্রিনে নেভিগেশন লিঙ্কগুলি লুকানো হবে */
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--header-bg);
+        position: absolute;
+        top: 110px; /* Reduced top to account for smaller header-top */
+        left: 0;
+        padding: 15px 0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0,0,0,0.1); /* ড্রপডাউন মেনুর জন্য হালকা ব্যাকগ্রাউন্ড */
+        margin-top: 5px;
+    }
+    .nav-links .dropdown-menu a {
+        padding-left: 30px; /* ড্রপডাউন আইটেমগুলির জন্য ইনডেন্ট */
+    }
+    .nav-buttons {
+        display: none; /* মোবাইল মেনুতে অন্তর্ভুক্ত করা হবে */
+    }
+    .hamburger-menu {
+        display: block;
+    }
+
+    /* মোবাইল স্ক্রিনের জন্য ব্যানার অ্যাডজাস্টমেন্ট */
+    .section-hero {
+        height: 45vh; /* উচ্চতা বাড়ানো হলো */
+        background-position: center 30%; /* ছবিটি একটু নিচে নামানো হলো */
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .section-card {
+        padding: 1.5rem 0;
+    }
+    .section-card h2 {
+        font-size: 1.8rem;
+    }
+    .about-mission-vision {
+        flex-direction: column;
+    }
+    .about-item {
+        flex: 1 1 100%;
+    }
+    .service-grid, .project-grid, .team-grid {
+        grid-template-columns: 1fr; /* মোবাইল স্ক্রিনে এক কলাম */
+    }
+    .footer-col {
+        flex: 1 1 100%; /* মোবাইল স্ক্রিনে এক কলাম */
+        text-align: center;
+    }
+    .footer-social-links {
+        justify-content: center;
+    }
+    .appointment-form {
+        flex-direction: column;
+        padding: 2rem;
+    }
+    .appointment-details, .appointment-calendar {
+        min-width: unset;
+        width: 100%;
+    }
+    .time-slots {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-top {
+        padding: 8px 10px; /* Smaller padding */
+    }
+    .header-top-row:first-child {
+        padding-bottom: 3px;
+        margin-bottom: 3px;
+    }
+    .header-top-right a {
+        font-size: 0.8rem; /* Smaller text for register/login */
+    }
+    .header-top-secondary .location-link span {
+        font-size: 0.8rem;
+    }
+    .view-on-maps-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .navbar {
+        padding: 8px 10px;
+    }
+    .navbar .logo-container .company-name {
+        font-size: 1.3rem;
+    }
+    .hamburger-menu {
+        font-size: 1.5rem;
+    }
+    .nav-links {
+        top: 105px; /* Adjust top for very small screens */
+    }
+    
+    .section-hero {
+        height: 50vh; /* ছোট স্ক্রিনের জন্য উচ্চতা আরও বাড়ানো হলো */
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .section-card h2 {
+        font-size: 1.5rem;
+    }
+    .link-box {
+        font-size: 1rem;
+    }
+    .link-box .link-content i {
+        font-size: 1.3rem;
+    }
+    .whatsapp-contact-box i {
+        font-size: 2rem; /* Smaller icon on very small screens */
+    }
+    .whatsapp-contact-box span {
+        font-size: 0.9rem;
+    }
+}

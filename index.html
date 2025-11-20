@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বিন্দুমাত্রা আইটি সলিউশন - Social Links</title>
+    <title>বিন্দুমাত্রা আইটি সলিউশন</title>
     
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -11,380 +11,175 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <style>
-        /* --- Define Local Font --- */
-        @font-face {
-            font-family: 'Kalpurush';
-            src: url('fonts/kalpurush.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* --- New Color Palette & General Styles --- */
-        :root {
-            --bg-color: #121212;
-            --card-bg: rgba(30, 30, 30, 0.7);
-            --primary-text: #e0e0e0;
-            --secondary-text: #a0a0a0;
-            --accent-color: #9b59b6;
-            --hover-color: rgba(155, 89, 182, 0.2);
-            --border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* --- Base Setup --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Kalpurush', sans-serif; 
-            background: linear-gradient(135deg, #232526, #414345);
-            color: var(--primary-text);
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px 15px;
-            font-size: 16px;
-        }
-
-        .main-container {
-            width: 100%;
-            max-width: 680px;
-            text-align: center;
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .profile-header, .shortcut-buttons, .about-section, .services-section, .links-section, .footer {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-        .shortcut-buttons { animation-delay: 0.2s; }
-        .about-section { animation-delay: 0.4s; }
-        .services-section { animation-delay: 0.6s; }
-        .links-section { animation-delay: 0.8s; }
-        .footer { animation-delay: 1s; }
-
-        /* --- Profile Header (Updated for new banner) --- */
-        .profile-header {
-            position: relative;
-            margin-bottom: 80px;
-        }
-        .cover-photo {
-            width: 110%;
-            height: 150px; /* Adjust height as needed for the banner */
-            background-image: url('images/banner.jpg'); /* New banner image */
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: -50px; /* Adjusted for new logo size */
-        }
-        .logo {
-            width: 100px;  /* Logo size reduced */
-            height: 100px; /* Logo size reduced */
-            border-radius: 50%;
-            border: 4px solid var(--accent-color);
-            background-color: var(--bg-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-        }
-        .profile-text {
-            margin-top: 1rem;
-        }
-        .profile-text h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .profile-text p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-        }
-        .profile-text p i {
-            margin-right: 8px;
-        }
-        .header-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        .header-socials a {
-            color: var(--secondary-text);
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .header-socials a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        /* --- Shortcut Buttons --- */
-        .shortcut-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-        .shortcut-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--primary-text);
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .shortcut-btn:hover {
-            background-color: var(--hover-color);
-            transform: translateY(-3px);
-        }
-
-        /* --- Shared Section Styles --- */
-        .section-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-        }
-        .section-card h2 {
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        /* --- About Section --- */
-        .about-section p {
-            line-height: 1.8;
-            color: var(--secondary-text);
-        }
-
-        /* --- Services Section --- */
-        .service-grid {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
-        }
-        .service-card {
-            background: rgba(0,0,0,0.2);
-            padding: 1rem;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column; /* Icon and text vertically */
-            align-items: center;
-            text-align: center;
-            gap: 0.75rem;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            background-color: var(--hover-color);
-        }
-        .service-card i {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-        }
-        .service-card span {
-            font-size: 0.9rem; /* Slightly smaller font for mobile grid */
-        }
-
-        /* --- Links Section --- */
-        .links-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .link-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--primary-text);
-            text-decoration: none;
-            padding: 1rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            position: relative;
-        }
-        .link-box:hover {
-            transform: translateY(-5px) scale(1.02);
-            background-color: var(--hover-color);
-        }
-        .link-box .link-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .link-box .link-content i {
-            font-size: 1.5rem;
-        }
-        .link-box.single-link {
-            justify-content: center;
-        }
-        .facebook .fa-facebook { color: #1877F2; }
-        .whatsapp .fa-whatsapp { color: #25D366; }
-        .instagram .fa-instagram { color: #E4405F; }
-        .gmail .fa-envelope { color: #EA4335; }
-        .phone .fa-phone-alt { color: #FFA500; }
-        .website .fa-globe { color: #4a90e2; }
-
-        /* --- Phone Numbers Interactive Box --- */
-        .phone { cursor: pointer; }
-        .phone .arrow-icon { transition: transform 0.3s ease; }
-        .phone.open .arrow-icon { transform: rotate(180deg); }
-        .phone-numbers-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-            margin-top: -10px;
-            padding: 0 20px;
-        }
-        .phone-numbers-container.show {
-            max-height: 300px;
-            padding: 15px 20px;
-        }
-        .phone-number-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .phone-number-item:last-child { border-bottom: none; }
-        .phone-number-item a { color: var(--primary-text); text-decoration: none; font-size: 1.1rem; }
-        .copy-icon { color: var(--secondary-text); cursor: pointer; font-size: 1rem; transition: color 0.2s; position: relative; }
-        .copy-icon:hover { color: var(--accent-color); }
-        .copy-icon::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 125%; left: 50%; transform: translateX(-50%);
-            background-color: #333; color: #fff; padding: 5px 10px;
-            border-radius: 5px; font-size: 0.8rem; white-space: nowrap;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s;
-        }
-        .copy-icon.copied::after { opacity: 1; visibility: visible; }
-        
-        /* --- Footer --- */
-        .footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
-        }
-        .footer-social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .footer-social-links a {
-            color: var(--secondary-text);
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .footer-social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-        .footer p { color: var(--secondary-text); font-size: 0.9rem; }
-
-        /* --- Responsive Design for Larger Screens --- */
-        @media (min-width: 600px) {
-            .service-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            .service-card {
-                flex-direction: row; /* Icon and text side-by-side */
-                text-align: left;
-                gap: 1rem;
-            }
-             .service-card span {
-                font-size: 1rem;
-            }
-            .profile-text h1 { font-size: 2.2rem; }
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Top Header -->
+    <div class="header-top">
+        <!-- First Row: Phone and Email -->
+        <div class="header-top-row">
+            <div class="header-top-left">
+                <a href="tel:+8801969763454"><i class="fas fa-phone-alt"></i> +8801969-763454</a>
+                <a href="mailto:bindumatrait@gmail.com"><i class="fas fa-envelope"></i> bindumatrait@gmail.com</a>
+            </div>
+            <div class="header-top-right">
+                <a href="register.html" id="register-btn"><i class="fas fa-user-plus"></i> রেজিস্টার</a>
+                <a href="login.html" id="login-btn"><i class="fas fa-sign-in-alt"></i> লগইন</a>
+            </div>
+        </div>
+        <!-- Second Row: Location and Map Button -->
+        <div class="header-top-row header-top-secondary">
+            <div class="header-top-left location-info">
+                <a href="#" class="location-link"><i class="fas fa-map-marker-alt"></i> বগুড়া-৫৮০০, বাংলাদেশ</a>
+            </div>
+            <div class="header-top-right">
+                <a href="https://maps.app.goo.gl/YhUV2nnABfP7qiTw5" target="_blank" class="view-on-maps-btn">
+                    <i class="fas fa-map-marked-alt"></i> Google Maps এ দেখুন
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.png" alt="Company Logo">
+            <span class="company-name">বিন্দুমাত্রা আইটি সলিউশন</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">হোম</a></li>
+            <li><a href="projects.html">আমাদের প্রজেক্টস</a></li>
+            <li><a href="services.html">আমাদের সেবাসমূহ</a></li>
+            <li><a href="#about-section">কোম্পানি ওভারভিউ</a></li>
+            <li><a href="team.html" class="highlight-team-link">আমাদের টিম</a></li>
+            <li class="dropdown">
+                <a href="#">রিসোর্স <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">ক্যারিয়ার</a></li>
+                    <li><a href="#">ব্লগ</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact-footer">যোগাযোগ করুন</a></li>
+            <li class="nav-mobile-buttons">
+                <a href="appointment.html" class="schedule-btn schedule-meeting-button">একটি মিটিং শিডিউল করুন</a>
+            </li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="appointment.html" class="schedule-btn schedule-meeting-button">একটি মিটিং শিডিউল করুন</a>
+        </div>
+        <div class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
 
     <div class="main-container">
-        <!-- Header Section -->
-        <header class="profile-header">
-            <div class="cover-photo"></div>
-            <div class="profile-info">
-                <img src="images/logo.png" alt="Company Logo" class="logo">
-                <div class="profile-text">
-                    <h1>বিন্দুমাত্রা আইটি সলিউশন</h1>
-                    <p><i class="fas fa-map-marker-alt"></i> পিটিআই মোড়, বগুড়া-৫৮০০</p>
-                    <div class="header-socials">
-                        <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://wa.me/8801969763454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:bindumatrait@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
+        <!-- Hero Section -->
+        <section class="section-hero animated-element">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>আধুনিক ব্যবসার জন্য ব্যাপক সমাধান</h1>
+                <p>সফটওয়্যার ডেভেলপমেন্ট, ডিজিটাল মার্কেটিং, UI/UX ডিজাইন এবং আরও অনেক কিছু—বিন্দুমাত্রা আইটি সলিউশন আপনার পাশেই আছে।</p>
+                <div class="hero-buttons">
+                    <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" class="hero-btn watch-video"><i class="fas fa-play-circle"></i> ভিডিও দেখুন</a>
+                    <a href="appointment.html" class="hero-btn schedule-meeting"><i class="fas fa-calendar-alt"></i> একটি মিটিং শিডিউল করুন</a>
                 </div>
             </div>
-        </header>
-
-        <!-- Shortcut Buttons -->
-        <section class="shortcut-buttons">
-            <a href="#services" class="shortcut-btn"><i class="fas fa-cogs"></i> আমাদের সেবাসমূহ</a>
-            <a href="#contact" class="shortcut-btn"><i class="fas fa-link"></i> যোগাযোগ করুন</a>
         </section>
 
         <!-- About Section -->
-        <section class="about-section section-card">
+        <section id="about-section" class="about-section section-card animated-element">
             <h2>আমাদের সম্পর্কে</h2>
-            <p>
-                বিন্দুমাত্রা আইটি সলিউশন একটি আধুনিক প্রযুক্তি-ভিত্তিক প্রতিষ্ঠান, যা আপনার ব্যবসাকে ডিজিটাল জগতে পরিচিত করতে অঙ্গীকারবদ্ধ। আমাদের মূল লক্ষ্য হলো, **সুলভ মূল্যে সেরা মানের সেবা** নিশ্চিত করা। আমরা শুধু প্রজেক্ট ডেলিভারি করি না, বরং ক্লায়েন্টদের সাথে দীর্ঘস্থায়ী সম্পর্ক তৈরিতে বিশ্বাসী। অত্যাধুনিক প্রযুক্তি ব্যবহার করে আমরা আপনার ব্যবসাকে প্রতিযোগিতায় এগিয়ে রাখি।
-            </p>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="services-section section-card">
-            <h2>আমাদের সেবাসমূহ</h2>
-            <div class="service-grid">
-                <div class="service-card"><i class="fas fa-code"></i><span>কাস্টম সফটওয়্যার</span></div>
-                <div class="service-card"><i class="fas fa-laptop-code"></i><span>ওয়েব ডেভেলপমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-mobile-alt"></i><span>অ্যাপ ডেভেলপমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-shopping-cart"></i><span>ই-কমার্স সাইট</span></div>
-                <div class="service-card"><i class="fas fa-id-card"></i><span>পোর্টফোলিও ওয়েবসাইট</span></div>
-                <div class="service-card"><i class="fas fa-database"></i><span>ডাটাবেস ইঞ্জিনিয়ারিং</span></div>
-                <div class="service-card"><i class="fas fa-server"></i><span>ব্যাকএন্ড আর্কিটেকচার</span></div>
-                <div class="service-card"><i class="fas fa-paint-brush"></i><span>গ্রাফিক্স ডিজাইন</span></div>
-                <div class="service-card"><i class="fas fa-tasks"></i><span>সাইট ম্যানেজমেন্ট</span></div>
-                <div class="service-card"><i class="fas fa-shield-alt"></i><span>সাইট সিকিউরিটি</span></div>
+            <div class="about-content">
+                <p>
+                    বিন্দুমাত্রা আইটি সলিউশন একটি আধুনিক প্রযুক্তি-ভিত্তিক প্রতিষ্ঠান, যা আপনার ব্যবসাকে ডিজিটাল জগতে পরিচিত করতে অঙ্গীকারবদ্ধ। আমাদের মূল লক্ষ্য হলো, **সুলভ মূল্যে সেরা মানের সেবা** নিশ্চিত করা। আমরা শুধু প্রজেক্ট ডেলিভারি করি না, বরং ক্লায়েন্টদের সাথে দীর্ঘস্থায়ী সম্পর্ক তৈরিতে বিশ্বাসী। অত্যাধুনিক প্রযুক্তি ব্যবহার করে আমরা আপনার ব্যবসাকে প্রতিযোগিতায় এগিয়ে রাখি।
+                </p>
+                <div class="about-mission-vision">
+                    <div class="about-item">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>আমাদের মিশন</h3>
+                        <p>উচ্চ-মানের, সাশ্রয়ী এবং দক্ষ ডিজিটাল সমাধান প্রদানের মাধ্যমে ব্যবসা সম্প্রসারণে ক্লায়েন্টদের সহায়তা করা। আমরা বিশ্বাস করি একটি বিশ্বস্ত প্রযুক্তি অংশীদার ক্লায়েন্টদের চাহিদা পূরণ করে এবং ভবিষ্যতের জন্য প্রস্তুত পরিষেবা সরবরাহ করে টেকসই বৃদ্ধি নিশ্চিত করে।</p>
+                    </div>
+                    <div class="about-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>আমাদের ভিশন</h3>
+                        <p>বিশ্বজুড়ে আইটি এবং সফটওয়্যার শিল্পে উদ্ভাবন এবং শ্রেষ্ঠত্বের পথে নেতৃত্ব দেওয়া আমাদের লক্ষ্য। আমরা ডিজিটাল ল্যান্ডস্কেপকে রূপদানকারী এবং ক্লায়েন্টদের সাফল্যের জন্য গুরুত্বপূর্ণ প্রভাব তৈরি করতে চাই।</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Links Section -->
-        <section id="contact" class="links-section">
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">যোগাযোগ করুন</h2>
+        <!-- Services Section (from original index.html) -->
+        <section id="services" class="services-section section-card animated-element">
+            <h2>আমাদের সেবাসমূহ</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>কাস্টম সফটওয়্যার</h3>
+                    <p>আপনার নির্দিষ্ট প্রয়োজন অনুযায়ী তৈরি করা ব্যতিক্রমী সফটওয়্যার সমাধান।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>ওয়েব ডেভেলপমেন্ট</h3>
+                    <p>আধুনিক এবং রেসপনসিভ ওয়েবসাইট তৈরি করে আপনার অনলাইন উপস্থিতি বাড়ান।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>অ্যাপ ডেভেলপমেন্ট</h3>
+                    <p>আইওএস এবং অ্যান্ড্রয়েড প্ল্যাটফর্মের জন্য উদ্ভাবনী মোবাইল অ্যাপ তৈরি করুন।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>ই-কমার্স সাইট</h3>
+                    <p>শক্তিশালী এবং সুরক্ষিত ই-কমার্স প্ল্যাটফর্মের মাধ্যমে আপনার পণ্য বিক্রি করুন।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-id-card"></i>
+                    <h3>পোর্টফোলিও ওয়েবসাইট</h3>
+                    <p>আপনার কাজ এবং দক্ষতা প্রদর্শনের জন্য পেশাদার পোর্টফোলিও ওয়েবসাইট।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-database"></i>
+                    <h3>ডাটাবেস ইঞ্জিনিয়ারিং</h3>
+                    <p>সঠিক ডাটাবেস ডিজাইন এবং ব্যবস্থাপনার মাধ্যমে আপনার ডেটা সুরক্ষিত রাখুন।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server"></i>
+                    <h3>ব্যাকএন্ড আর্কিটেকচার</h3>
+                    <p>আপনার অ্যাপ্লিকেশনের জন্য শক্তিশালী এবং নির্ভরযোগ্য সার্ভার-সাইড সমাধান।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>গ্রাফিক্স ডিজাইন</h3>
+                    <p>আকর্ষণীয় ভিজ্যুয়াল ডিজাইন তৈরি করে আপনার ব্র্যান্ডের পরিচয় শক্তিশালী করুন।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>সাইট ম্যানেজমেন্ট</h3>
+                    <p>আপনার ওয়েবসাইটকে আপ-টু-ডেট এবং সুরক্ষিত রাখতে সম্পূর্ণ ব্যবস্থাপনা পরিষেবা।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>সাইট সিকিউরিটি</h3>
+                    <p>সর্বোচ্চ নিরাপত্তা ব্যবস্থার মাধ্যমে আপনার ওয়েবসাইটকে সাইবার হুমকি থেকে রক্ষা করুন।</p>
+                    <a href="services.html" class="learn-more-btn">আরও জানুন</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Section (from original index.html, adapted) -->
+        <section id="contact-links" class="links-section section-card animated-element">
+            <h2>যোগাযোগ করুন</h2>
             
             <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" class="link-box facebook single-link">
                 <div class="link-content"><i class="fab fa-facebook"></i><span>ফেসবুক পেজ</span></div>
@@ -404,12 +199,12 @@
             </div>
             <div class="phone-numbers-container" id="phone-numbers">
                 <div class="phone-number-item">
-                    <a href="tel:+8801779973619">+8801779-973619 (Most Responsive)</a>
-                    <i class="far fa-copy copy-icon" data-clipboard-text="" title="কপি করুন"></i>
+                    <a href="tel:+8801745938158">+8801745-938158</a>
+                    <i class="far fa-copy copy-icon" data-clipboard-text="+8801745938158" title="কপি করুন"></i>
                 </div>
                 <div class="phone-number-item">
-                    <a href="tel:+8801745938158">+8801745-938158</a>
-                    <i class="far fa-copy copy-icon" data-clipboard-text="" title="কপি করুন"></i>
+                    <a href="tel:+8801779973619">+8801779-973619(Most Responsive)</a>
+                    <i class="far fa-copy copy-icon" data-clipboard-text="+8801779973619" title="কপি করুন"></i>
                 </div>
                 <div class="phone-number-item">
                     <a href="tel:+8801966032460">+8801966-032460</a>
@@ -421,48 +216,59 @@
                 <div class="link-content"><i class="fab fa-instagram"></i><span>এক্সিকিউটিভ ডিরেক্টর</span></div>
             </a>
 
-            <a href="https://bindumatraitsolutions.netlify.app" target="_blank" class="link-box website single-link">
-                <div class="link-content"><i class="fas fa-globe"></i><span>আমাদের ওয়েবসাইট</span></div>
+            <a href="https://bindumatraappstore.netlify.app" target="_blank" class="link-box app-store single-link">
+                <div class="link-content"><i class="fas fa-store"></i><span>আমাদের অ্যাপ স্টোর</span></div>
             </a>
         </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-social-links">
-                <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/8801969763454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:bindumatrait@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p>&copy; All rights reserved by Bindumatra IT solutions 2025</p>
-        </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const phoneBox = document.getElementById('phone-box');
-            const phoneNumbersContainer = document.getElementById('phone-numbers');
-            phoneBox.addEventListener('click', () => {
-                phoneNumbersContainer.classList.toggle('show');
-                phoneBox.classList.toggle('open');
-            });
+    <!-- Footer -->
+    <footer class="footer animated-element" id="contact-footer">
+        <div class="main-container">
+            <div class="footer-col">
+                <h3>বিন্দুমাত্রা আইটি সলিউশন</h3>
+                <p>বগুড়া, বাংলাদেশে অবস্থিত একটি প্রিমিয়ার আইটি এবং সফটওয়্যার ফার্ম। আমরা ডিজিটাল ডোমেনের বিভিন্ন সমাধান প্রদানে প্রতিশ্রুতিবদ্ধ।</p>
+                <!-- <a href="#" class="footer-app-store-btn"><img src="images/google-play.png" alt="Google Play"></a> -->
+            </div>
+            <div class="footer-col">
+                <h3>কুইক লিঙ্কস</h3>
+                <ul>
+                    <li><a href="#about-section">আমাদের সম্পর্কে</a></li>
+                    <li><a href="services.html">আমাদের সেবাসমূহ</a></li>
+                    <li><a href="projects.html">আমাদের প্রজেক্টস</a></li>
+                    <li><a href="#">ব্লগ</a></li>
+                    <li><a href="#">ক্যারিয়ার</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>সাপোর্ট</h3>
+                <ul>
+                    <li><a href="#contact-links">যোগাযোগ করুন</a></li>
+                    <li><a href="#">সাপোর্ট</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">গোপনীয়তা নীতি</a></li>
+                    <li><a href="#">শর্তাবলী</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-info">
+                <h3>যোগাযোগের তথ্য</h3>
+                <p><i class="fas fa-map-marker-alt"></i> পিটি আই মোড়, বগুড়া-৫৮০০</p>
+                <p><i class="fas fa-envelope"></i> bindumatrait@gmail.com</p>
+                <p><i class="fas fa-phone-alt"></i> +8801969763454</p>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61580476801857" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/8801969763454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:bindumatrait@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 বিন্দুমাত্রা আইটি সলিউশন। সর্বস্বত্ব সংরক্ষিত।</p>
+                <p>ডিজাইন ও ডেভেলপ করেছেন বিন্দুমাত্রা আইটি সলিউশনস।</p>
+            </div>
+        </div>
+    </footer>
 
-            const copyIcons = document.querySelectorAll('.copy-icon');
-            copyIcons.forEach(icon => {
-                icon.setAttribute('data-tooltip', icon.getAttribute('title'));
-                icon.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const textToCopy = icon.getAttribute('data-clipboard-text');
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        icon.setAttribute('data-tooltip', 'কপি হয়েছে!');
-                        icon.classList.add('copied');
-                        setTimeout(() => {
-                            icon.setAttribute('data-tooltip', icon.getAttribute('title'));
-                            icon.classList.remove('copied');
-                        }, 2000);
-                    });
-                });
-            });
-        });
-    </script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
